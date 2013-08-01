@@ -1,15 +1,16 @@
 class App < Sinatra::Base
 
-  show_sinatra_exception = lambda do |env, e|
-    app = Sinatra::ShowExceptions.new(lambda {|env| raise e})
-    app.call(env)
-  end
-
   configure do
+    show_sinatra_exception = lambda do |env, e|
+      app = Sinatra::ShowExceptions.new(lambda {|env| raise e})
+      app.call(env)
+    end
+
     enable :logging
     set :threaded, false
     set :app_title, 'Asynchrony'
     set :root, File.dirname(__FILE__)
+
     use Rack::Asynchrony, {:exception_handler => show_sinatra_exception}
     use Rack::CommonLogger, Logger.new(STDOUT)
   end
