@@ -8,6 +8,8 @@ An API endpoint using Grape serving a SSE ([Server-sent events](https://en.wikip
 
 ## Usage
 
+Tested with MRI Ruby **1.9.3-p448** and **2.0.0-p247**
+
 ```sh
 bundle install
 ruby app/boot.rb
